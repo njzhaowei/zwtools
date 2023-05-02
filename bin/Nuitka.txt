@@ -1,0 +1,3 @@
+add mingw64 bin to path, choose x86_64-posix-sjlj https://sourceforge.net/projects/mingw-w64/files/
+copy ccache.exe to C:\Users\yew\AppData\Local\Nuitka\Nuitka\ccache\v3.7.12
+copy depends.exe depends.dll to C:\Users\yew\AppData\Local\Nuitka\Nuitka\depends\x86_64
