@@ -20,12 +20,13 @@ SRC_DIR = CWD_DIR
 DB_PATH = None
 
 def usage():
-    print('Desc: Change *.uc from Netease CloudMusic to mp3.\n'+
-        'Search webdb.dat to set mp3 file name and ID3 info\n'+
-        'Usage: \n'+
-        '{0} #use current directory as source directory\n'+
-        '{0} -d ucfile_dirpath\n'+
-        '{0} -w webdb.dat_filepath'.format(EXE_PTH.name)
+    print(
+'Desc: Change *.uc from Netease CloudMusic to mp3.\n\
+Search webdb.dat to set mp3 file name and ID3 info\n\
+Usage: \n\
+{0} #use current directory as source directory\n\
+{0} -d ucfile_dirpath\n\
+{0} -w webdb.dat_filepath'.format(EXE_PTH.name)
     )
 
 def crack_ucfile(inpth, outpth):
