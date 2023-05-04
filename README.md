@@ -7,8 +7,8 @@
 ## Usage
 
     uc2mp3.exe #use current directory as source directory
-    uc2mp3.exe -d ucfile_dirpath
-    uc2mp3.exe -w webdb.dat_filepath
+    uc2mp3.exe -d ucfiledir
+    uc2mp3.exe -w webdb.dat_filepath -o outputdir
 
 # pdftitle
 ## Desc

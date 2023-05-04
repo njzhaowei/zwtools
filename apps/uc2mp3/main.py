@@ -17,6 +17,7 @@ CWD_DIR = Path(sys.argv[0]).parent.resolve()
 TMP_DIR = Path(__file__).parent.parent.resolve()
 MEI_TMP = Path(sys._MEIPASS) if hasattr(sys, '_MEIPASS') else Path('.')
 SRC_DIR = CWD_DIR
+OUT_DIR = CWD_DIR
 DB_PATH = None
 
 def usage():
@@ -26,7 +27,7 @@ Search webdb.dat to set mp3 file name and ID3 info\n\
 Usage: \n\
 {0} #use current directory as source directory\n\
 {0} -d ucfile_dirpath\n\
-{0} -w webdb.dat_filepath'.format(EXE_PTH.name)
+{0} -w webdb.dat_filepath -o outputdir'.format(EXE_PTH.name)
     )
 
 def crack_ucfile(inpth, outpth):
@@ -57,7 +58,7 @@ def main():
         usage()
         print('Exe path: %s, Unpack size: %.2fM'%( MEI_TMP, (dirsize(MEI_TMP)/1024/1024) ))
         try:
-            opts, args = getopt.getopt(sys.argv[1:], 'hd:w:', ['help', 'dir', 'webdb'])
+            opts, args = getopt.getopt(sys.argv[1:], 'hd:o:w:', ['help', 'dir', 'out', 'webdb'])
         except getopt.GetoptError as err:
             # print help information and exit:
             print(err)  # will print something like "option -a not recognized"
@@ -71,7 +72,10 @@ def main():
             elif o in ('-d', '--dir'):
                 global SRC_DIR
                 SRC_DIR = Path(a)
-            elif o in ('-d', '--webdb'):
+            elif o in ('-o', '--out'):
+                global OUT_DIR
+                OUT_DIR = Path(a)
+            elif o in ('-w', '--webdb'):
                 global DB_PATH
                 DB_PATH = Path(a)
             else:
@@ -89,7 +93,8 @@ def main():
                 if songinfo:
                     songartists = '&'.join([o['name'] for o in songinfo['artists']])
                     songname = '%s - %s'%( songinfo['name'], songartists )
-            songpath = pth.parent/('%s.mp3'%songname)
+            songpath = OUT_DIR/('%s.mp3'%songname)
+            songpath.parent.mkdir(parents=True, exist_ok=True)
             print('Save to %s'%songpath)
             crack_ucfile(pth, songpath)
             if songinfo:
