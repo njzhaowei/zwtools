@@ -1,17 +1,16 @@
 import os,sys
 import getopt
 import traceback
-import psutil
 
 from pathlib import Path
 from PyPDF2 import PdfReader, PdfMerger
-from zwutils.fileutils import dirsize
-from zwutils.comm import waitkey
+from zwtk.fileutils import dirsize
+from zwtk.comm import waitkey
 
 EXE_PTH = Path(sys.argv[0]).resolve()
 CWD_DIR = Path(sys.argv[0]).parent.resolve()
 TMP_DIR = Path(__file__).parent.parent.resolve()
-MEI_TMP = Path(sys._MEIPASS)
+MEI_TMP = Path(sys._MEIPASS) if hasattr(sys, '_MEIPASS') else Path('.')
 DST_DIR = CWD_DIR
 
 def usage():
@@ -19,9 +18,7 @@ def usage():
 
 def main():
     try:
-        mem = psutil.virtual_memory()
-        rss = psutil.Process(os.getpid()).memory_info().rss
-        print('Unpack size: %.2fM, Mem: %0.2fM/%0.2fM'%( (dirsize(MEI_TMP)/1024/1024), rss/1024/1024, mem.total/1024/1024 ))
+        print('Unpack size: %.2fM'%( (dirsize(MEI_TMP)/1024/1024) ))
         try:
             opts, args = getopt.getopt(sys.argv[1:], 'hd:', ['help', 'dir'])
         except getopt.GetoptError as err:
