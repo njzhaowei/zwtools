@@ -76,7 +76,7 @@ if ONEFILE:
         a.datas,  
         [],
         name=APPNAME,
-        debug=False,
+        debug=DEBUG,
         bootloader_ignore_signals=False,
         strip=False,
         upx=UPX,

@@ -1,2 +1,2 @@
 pylint
-pyinstaller
+pyinstaller==5.10.1
