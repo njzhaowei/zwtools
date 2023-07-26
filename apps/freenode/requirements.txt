@@ -1,0 +1,4 @@
+zwtk
+tqdm
+requests
+beautifulsoup4
