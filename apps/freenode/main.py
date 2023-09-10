@@ -8,6 +8,7 @@ from pathlib import Path
 from tqdm import tqdm
 import requests
 from bs4 import BeautifulSoup
+from loguru import logger
 
 from zwtk.fileutils import dirsize
 from zwtk.comm import waitkey
@@ -85,7 +86,7 @@ def get_subs_url(url):
         if subs_url:
             break
     if subs_url:
-        print('Find subs url: %s, pwd: %s' % (reqs_url, reqs_pwd))
+        print('[FOUND] subs url: %s, page url: %s, page pwd: %s' % (subs_url, reqs_url, reqs_pwd))
     print('Finish...')
     return subs_url
 
