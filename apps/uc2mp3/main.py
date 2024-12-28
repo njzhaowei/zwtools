@@ -57,6 +57,7 @@ def main():
     try:
         usage()
         print('Exe path: %s, Unpack size: %.2fM'%( MEI_TMP, (dirsize(MEI_TMP)/1024/1024) ))
+        print('WebDB path: %s'%( get_webdb() ))
         try:
             opts, args = getopt.getopt(sys.argv[1:], 'hd:o:w:', ['help', 'dir', 'out', 'webdb'])
         except getopt.GetoptError as err:
@@ -88,11 +89,11 @@ def main():
             print('Process (%d/%d) %s'%(idx+1, pthlen, pth.name))
             songname = pth.stem
             songinfo = None
-            if webdb:
-                songinfo = get_song(webdb, pth.stem)
-                if songinfo:
-                    songartists = '&'.join([o['name'] for o in songinfo['artists']])
-                    songname = '%s - %s'%( songinfo['name'], songartists )
+            # if webdb:
+            #     songinfo = get_song(webdb, pth.stem)
+            #     if songinfo:
+            #         songartists = '&'.join([o['name'] for o in songinfo['artists']])
+            #         songname = '%s - %s'%( songinfo['name'], songartists )
             songpath = OUT_DIR/('%s.mp3'%songname)
             songpath.parent.mkdir(parents=True, exist_ok=True)
             print('Save to %s'%songpath)
